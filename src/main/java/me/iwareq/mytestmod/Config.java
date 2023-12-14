@@ -1,8 +1,8 @@
-package com.myname.mymodid;
-
-import java.io.File;
+package me.iwareq.mytestmod;
 
 import net.minecraftforge.common.config.Configuration;
+
+import java.io.File;
 
 public class Config {
 
