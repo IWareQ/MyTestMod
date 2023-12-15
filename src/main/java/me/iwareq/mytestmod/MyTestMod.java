@@ -6,7 +6,9 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import me.iwareq.mytestmod.block.BlockRegistry;
+import me.iwareq.mytestmod.gui.HandlerGui;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,6 +16,9 @@ import org.apache.logging.log4j.Logger;
 public class MyTestMod {
 
     public static final Logger LOG = LogManager.getLogger(Tags.MODID);
+
+    @Mod.Instance(Tags.MODID)
+    public static MyTestMod instance;
 
     @SidedProxy(clientSide = "me.iwareq.mytestmod.ClientProxy", serverSide = "me.iwareq.mytestmod.CommonProxy")
     public static CommonProxy proxy;
@@ -30,6 +35,7 @@ public class MyTestMod {
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new HandlerGui());
     }
 
     @Mod.EventHandler

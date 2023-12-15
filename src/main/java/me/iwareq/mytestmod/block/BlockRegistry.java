@@ -3,7 +3,8 @@ package me.iwareq.mytestmod.block;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import me.iwareq.mytestmod.block.impl.CraftTable;
+import me.iwareq.mytestmod.block.impl.BlockCraftTable;
+import me.iwareq.mytestmod.block.impl.TileEntityCraftTable;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -18,6 +19,7 @@ public class BlockRegistry {
     };
 
     public static void init() {
-        GameRegistry.registerBlock(new CraftTable(), "craft_table");
+        GameRegistry.registerBlock(new BlockCraftTable(), "craft_table");
+        GameRegistry.registerTileEntity(TileEntityCraftTable.class, "craft_table_entity");
     }
 }
