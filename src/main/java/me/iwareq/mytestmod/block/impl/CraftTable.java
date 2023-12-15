@@ -8,6 +8,8 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
@@ -45,22 +47,17 @@ public class CraftTable extends Block {
         int dir = (MathHelper.floor_double((double)(placer.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3);
         int[] r = {2, 5, 3, 4};
         worldIn.setBlockMetadataWithNotify(x, y, z, r[dir], 3);
+
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(int side, int meta) {
         ForgeDirection dir = ForgeDirection.getOrientation(side);
-        ForgeDirection blockDir;
+        ForgeDirection blockDir = ForgeDirection.getOrientation(meta);
 
-        if (meta != 0){
-            blockDir = ForgeDirection.getOrientation(meta);
-        }else {
-            blockDir = ForgeDirection.UP;
-        }
-
+        if (side == 0 || side == 1) return topIcon;
         if (blockDir == dir) return frontIcon;
-        if (blockDir == ForgeDirection.UP || blockDir == ForgeDirection.DOWN) return topIcon;
         return sideIcon;
     }
 }
