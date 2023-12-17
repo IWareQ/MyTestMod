@@ -6,6 +6,7 @@ import net.minecraftforge.client.IItemRenderer;
 import static org.lwjgl.opengl.GL11.*;
 
 public abstract class CustomItemRenderer implements IItemRenderer {
+
     @Override
     public boolean handleRenderType(ItemStack item, ItemRenderType type) {
         return true;

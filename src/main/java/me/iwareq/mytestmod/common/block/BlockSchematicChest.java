@@ -24,7 +24,7 @@ public class BlockSchematicChest extends BlockContainer {
 
     public BlockSchematicChest() {
         super(Material.cake);
-        this.setBlockName(Tags.MODID + ".chest");
+        this.setBlockName("schematic_chest");
         this.setCreativeTab(MyTestTab.INSTANCE);
     }
 

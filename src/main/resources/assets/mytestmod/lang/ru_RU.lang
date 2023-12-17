@@ -1,3 +1,5 @@
-tile.craft_table.name=Столик
+itemGroup.mytestmod=Тест вкладка
+
+tile.schematic_chest.name=Сундук для схем
+
 item.portal_gun.name=Портальная пушка
-itemGroup.test_tab=Это тестовая вкладка мода моего

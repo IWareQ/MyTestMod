@@ -21,7 +21,7 @@ public class MyTestTab extends CreativeTabs {
 
     @Override
     public int getSearchbarWidth() {
-        return 30;
+        return 70;
     }
 
     @Override
