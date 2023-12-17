@@ -3,3 +3,5 @@ itemGroup.mytestmod=Тест вкладка
 tile.schematic_chest.name=Сундук для схем
 
 item.portal_gun.name=Портальная пушка
+
+container.schematic_chest.name=Сундук для схем

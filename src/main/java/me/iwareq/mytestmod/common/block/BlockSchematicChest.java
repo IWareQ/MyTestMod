@@ -10,17 +10,15 @@ import me.iwareq.mytestmod.common.tab.MyTestTab;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class BlockSchematicChest extends BlockContainer {
 
-    private IIcon sideIcon, frontIcon, topIcon;
+    @SideOnly(Side.CLIENT)
+    private IIcon icon;
 
     public BlockSchematicChest() {
         super(Material.cake);
@@ -47,27 +45,13 @@ public class BlockSchematicChest extends BlockContainer {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister register) {
-        this.topIcon = register.registerIcon(Tags.MODID + ":chest_top");
-        this.sideIcon = register.registerIcon(Tags.MODID + ":chest_side");
-        this.frontIcon = register.registerIcon(Tags.MODID + ":chest_front");
+        this.icon = register.registerIcon(Tags.MODID + ":schematic_chest");
     }
 
     @SideOnly(Side.CLIENT)
     @Override
     public IIcon getIcon(int side, int meta) {
-        if (side >= 2 && side <= 5) {
-            if (meta == side || (meta == 0 && side == 3)) return frontIcon;
-            return sideIcon;
-        }
-
-        return topIcon;
-    }
-
-    @Override
-    public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
-        int rotation = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
-        int[] meta = {2, 5, 3, 4};
-        world.setBlockMetadataWithNotify(x, y, z, meta[rotation], 3);
+        return this.icon;
     }
 
     @Override

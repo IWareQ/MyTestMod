@@ -4,6 +4,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import me.iwareq.mytestmod.MyTestMod;
 import me.iwareq.mytestmod.common.block.BlockRegistry;
 import me.iwareq.mytestmod.common.block.tile.TileEntitySchematicChest;
 import me.iwareq.mytestmod.common.container.ContainerSchematicChest;
@@ -19,6 +21,8 @@ public class CommonProxy implements IGuiHandler {
     public void preInit(FMLPreInitializationEvent event) {
         BlockRegistry.register();
         ItemRegistry.register();
+
+        NetworkRegistry.INSTANCE.registerGuiHandler(MyTestMod.instance, this);
     }
 
     public void init(FMLInitializationEvent event) {

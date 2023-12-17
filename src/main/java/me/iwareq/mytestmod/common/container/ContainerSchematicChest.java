@@ -15,22 +15,22 @@ public class ContainerSchematicChest extends Container {
         this.chest = chest;
 
         // Инвентарь сундука
-        for (int row = 0; row < 7; row++) {
-            for (int col = 0; col < 9; col++) {
-                this.addSlotToContainer(new Slot(chest, col + row * 9, 8 + col * 18, 8 + row * 18));
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                this.addSlotToContainer(new Slot(chest, col + row * 3, 62 + col * 18, 17 + row * 18));
             }
         }
 
         // Инвентарь игрока
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 9; col++) {
-                this.addSlotToContainer(new Slot(inventoryPlayer, col + row * 9 + 9, 8 + col * 18, 145 + row * 18));
+                this.addSlotToContainer(new Slot(inventoryPlayer, col + row * 9 + 9, 8 + col * 18, 84 + row * 18));
             }
         }
 
         // Хот-бар игрока
         for (int col = 0; col < 9; col++) {
-            this.addSlotToContainer(new Slot(inventoryPlayer, col, 8 + col * 18, 203));
+            this.addSlotToContainer(new Slot(inventoryPlayer, col, 8 + col * 18, 142));
         }
     }
 
