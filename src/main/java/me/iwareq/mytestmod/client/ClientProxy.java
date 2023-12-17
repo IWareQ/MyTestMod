@@ -7,6 +7,7 @@ import me.iwareq.mytestmod.client.gui.GUISchematicChest;
 import me.iwareq.mytestmod.common.CommonProxy;
 import me.iwareq.mytestmod.common.block.tile.TileEntitySchematicChest;
 import me.iwareq.mytestmod.common.container.ContainerSchematicChest;
+import me.iwareq.mytestmod.common.item.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -21,6 +22,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         super.init(event);
+        ItemRegistry.registerRender();
     }
 
     @Override

@@ -7,6 +7,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import me.iwareq.mytestmod.common.block.BlockRegistry;
 import me.iwareq.mytestmod.common.block.tile.TileEntitySchematicChest;
 import me.iwareq.mytestmod.common.container.ContainerSchematicChest;
+import me.iwareq.mytestmod.common.item.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -17,6 +18,7 @@ public class CommonProxy implements IGuiHandler {
 
     public void preInit(FMLPreInitializationEvent event) {
         BlockRegistry.register();
+        ItemRegistry.register();
     }
 
     public void init(FMLInitializationEvent event) {}

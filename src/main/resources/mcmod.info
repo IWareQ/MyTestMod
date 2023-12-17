@@ -8,7 +8,7 @@
 		"mcversion": "${minecraftVersion}",
 		"url": "https://github.com/IWareQ/MyTestMod",
 		"updateUrl": "",
-		"authorList": ["IWareQ"],
+		"authorList": ["IWareQ", "Magn1tola"],
 		"credits": "",
 		"logoFile": "",
 		"screenshots": [],
