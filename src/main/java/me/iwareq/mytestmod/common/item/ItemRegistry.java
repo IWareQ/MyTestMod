@@ -11,9 +11,12 @@ import net.minecraftforge.client.MinecraftForgeClient;
 public class ItemRegistry {
 
     public static final ItemPortalGun PORTAL_GUN = new ItemPortalGun();
+    public static final ItemBottlePortalLiquid BOTTLE_PORTAL_LIQUID = new ItemBottlePortalLiquid();
+
 
     public static void register() {
         GameRegistry.registerItem(PORTAL_GUN, "portal_gun");
+        GameRegistry.registerItem(BOTTLE_PORTAL_LIQUID, BOTTLE_PORTAL_LIQUID.getUnlocalizedName());
     }
 
     @SideOnly(Side.CLIENT)
