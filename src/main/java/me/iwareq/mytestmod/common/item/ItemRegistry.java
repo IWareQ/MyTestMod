@@ -15,7 +15,7 @@ public class ItemRegistry {
 
 
     public static void register() {
-        GameRegistry.registerItem(PORTAL_GUN, "portal_gun");
+        GameRegistry.registerItem(PORTAL_GUN, PORTAL_GUN.getUnlocalizedName());
         GameRegistry.registerItem(BOTTLE_PORTAL_LIQUID, BOTTLE_PORTAL_LIQUID.getUnlocalizedName());
     }
 
