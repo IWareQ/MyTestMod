@@ -17,8 +17,8 @@ public class ItemPortalGun extends Item {
 
     private int currentCharge;
 
-    private boolean reloading;
-    private boolean coolDown;
+    private boolean canReloading;
+    private boolean cooldown;
 
     public ItemPortalGun() {
         this.setCreativeTab(MyTestTab.INSTANCE);
@@ -29,14 +29,14 @@ public class ItemPortalGun extends Item {
     @Override
     public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player) {
         player.setItemInUse(itemStackIn, getMaxItemUseDuration(itemStackIn));
+
         if (currentCharge <= 0) {
-            reloading = true;
+            canReloading = true;
             return itemStackIn;
         }
-        if (coolDown) {
-            return itemStackIn;
-        }
-        coolDown = true;
+
+        if (cooldown) return itemStackIn;
+        cooldown = true;
 
         worldIn.spawnEntityInWorld(new EntityPortalBall(worldIn, player));
         currentCharge--;
@@ -44,25 +44,25 @@ public class ItemPortalGun extends Item {
     }
 
     @Override
-    public int getMaxItemUseDuration(ItemStack p_77626_1_) {
+    public int getMaxItemUseDuration(ItemStack item) {
         return 10;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void onUsingTick(ItemStack itemStack, EntityPlayer player, int count) {
-        if (count == 1 && reloading) reload(player);
+        if (count == 1 && canReloading) reload(player);
     }
 
     @Override
     public EnumAction getItemUseAction(ItemStack stack) {
-        if (reloading) return EnumAction.bow;
+        if (canReloading) return EnumAction.bow;
         return EnumAction.none;
     }
 
     @Override
     public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int count) {
-        if (coolDown) coolDown = false;
+        if (cooldown) cooldown = false;
     }
 
     private void reload(EntityPlayer player) {
@@ -72,11 +72,10 @@ public class ItemPortalGun extends Item {
             if (stackInSlot == null) continue;
             if (stackInSlot.getItem() != ItemRegistry.BOTTLE_PORTAL_LIQUID) continue;
 
-            player.inventory.decrStackSize(i, 1);
-            player.inventoryContainer.detectAndSendChanges();
-            currentCharge = MAX_CHARGE;
-            reloading = false;
+            player.inventory.consumeInventoryItem(ItemRegistry.BOTTLE_PORTAL_LIQUID);
 
+            currentCharge = MAX_CHARGE;
+            canReloading = false;
             break;
         }
     }
