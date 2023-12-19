@@ -51,8 +51,7 @@ public class ItemPortalGun extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void onUsingTick(ItemStack itemStack, EntityPlayer player, int count) {
-        if (count == 1 && reloading)
-            reload(player);
+        if (count == 1 && reloading) reload(player);
     }
 
     @Override
@@ -63,11 +62,11 @@ public class ItemPortalGun extends Item {
 
     @Override
     public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int count) {
-        if (reloading) return;
         if (coolDown) coolDown = false;
     }
 
     private void reload(EntityPlayer player) {
+        if (player.getEntityWorld().isRemote) return;
         for (int i = 0; i < player.inventory.mainInventory.length; i++) {
             ItemStack stackInSlot = player.inventory.getStackInSlot(i);
             if (stackInSlot == null) continue;
