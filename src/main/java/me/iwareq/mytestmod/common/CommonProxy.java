@@ -9,6 +9,7 @@ import me.iwareq.mytestmod.MyTestMod;
 import me.iwareq.mytestmod.common.block.BlockRegistry;
 import me.iwareq.mytestmod.common.block.tile.TileEntitySchematicChest;
 import me.iwareq.mytestmod.common.container.ContainerSchematicChest;
+import me.iwareq.mytestmod.common.entity.CustomEntityRegistry;
 import me.iwareq.mytestmod.common.item.ItemRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -21,6 +22,7 @@ public class CommonProxy implements IGuiHandler {
     public void preInit(FMLPreInitializationEvent event) {
         BlockRegistry.register();
         ItemRegistry.register();
+        CustomEntityRegistry.register();
 
         NetworkRegistry.INSTANCE.registerGuiHandler(MyTestMod.instance, this);
     }
