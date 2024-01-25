@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import lombok.experimental.UtilityClass;
 import me.iwareq.mytestmod.client.renderer.item.PortalGunRenderer;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.MinecraftForgeClient;
 
 @UtilityClass
@@ -15,8 +16,12 @@ public class ItemRegistry {
 
 
     public static void register() {
-        GameRegistry.registerItem(PORTAL_GUN, PORTAL_GUN.getUnlocalizedName());
-        GameRegistry.registerItem(BOTTLE_PORTAL_LIQUID, BOTTLE_PORTAL_LIQUID.getUnlocalizedName());
+        register(PORTAL_GUN);
+        register(BOTTLE_PORTAL_LIQUID);
+    }
+
+    private static void register(Item item) {
+        GameRegistry.registerItem(item, item.getUnlocalizedName());
     }
 
     @SideOnly(Side.CLIENT)

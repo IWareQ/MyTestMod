@@ -2,7 +2,6 @@ package me.iwareq.mytestmod.common.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import me.iwareq.mytestmod.Tags;
 import me.iwareq.mytestmod.common.tab.MyTestTab;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -13,6 +12,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+
+import static me.iwareq.mytestmod.Resources.PREFIX_MOD;
 
 public class BlockCraftingTable extends Block {
 
@@ -37,9 +38,9 @@ public class BlockCraftingTable extends Block {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister register) {
-        this.topIcon = register.registerIcon(Tags.MODID + ":CraftingTable_top");
-        this.sideIcon = register.registerIcon(Tags.MODID + ":CraftingTable_side");
-        this.frontIcon = register.registerIcon(Tags.MODID + ":CraftingTable_front");
+        this.topIcon = register.registerIcon(PREFIX_MOD + "CraftingTable_top");
+        this.sideIcon = register.registerIcon(PREFIX_MOD + "CraftingTable_side");
+        this.frontIcon = register.registerIcon(PREFIX_MOD + "CraftingTable_front");
     }
 
     @SideOnly(Side.CLIENT)
@@ -55,7 +56,7 @@ public class BlockCraftingTable extends Block {
 
     @Override
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase entity, ItemStack stack) {
-        int rotation = MathHelper.floor_double((double) (entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        int rotation = MathHelper.floor_double((entity.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
         int[] meta = {2, 5, 3, 4};
         world.setBlockMetadataWithNotify(x, y, z, meta[rotation], 3);
     }

@@ -7,10 +7,16 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import me.iwareq.mytestmod.common.CommonProxy;
 
-@Mod(modid = Tags.MODID, version = Tags.VERSION, name = Tags.MODNAME, acceptedMinecraftVersions = "[1.7.10]")
+import static me.iwareq.mytestmod.MyTestMod.MOD_ID;
+import static me.iwareq.mytestmod.MyTestMod.VERSION;
+
+@Mod(modid = MOD_ID, version = VERSION)
 public class MyTestMod {
 
-    @Mod.Instance(Tags.MODID)
+    public static final String MOD_ID = "mytestmod";
+    public static final String VERSION = "1.0";
+
+    @Mod.Instance(MOD_ID)
     public static MyTestMod instance;
 
     @SidedProxy(

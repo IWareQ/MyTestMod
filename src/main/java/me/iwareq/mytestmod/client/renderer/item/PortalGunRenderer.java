@@ -1,24 +1,26 @@
 package me.iwareq.mytestmod.client.renderer.item;
 
-import me.iwareq.mytestmod.Tags;
+import me.iwareq.mytestmod.Resources;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.AdvancedModelLoader;
 import net.minecraftforge.client.model.IModelCustom;
 
+import static me.iwareq.mytestmod.Resources.MODEL_PORTAL_GUN;
+import static me.iwareq.mytestmod.Resources.OBJ_MODEL_PORTAL_GUN;
+
 public class PortalGunRenderer extends CustomItemRenderer {
 
-    private final ResourceLocation modelPath = new ResourceLocation(Tags.MODID, "models/items/portalGun.obj");
-    private final ResourceLocation texturePath = new ResourceLocation(Tags.MODID, "textures/models/portalGun.png");
-    private final IModelCustom model = AdvancedModelLoader.loadModel(modelPath);
+    private static final ResourceLocation TEXTURE = Resources.of(MODEL_PORTAL_GUN);
+    private static final IModelCustom MODEL = AdvancedModelLoader.loadModel(Resources.of(OBJ_MODEL_PORTAL_GUN));
 
     @Override
     public void bindTextures() {
-        Minecraft.getMinecraft().renderEngine.bindTexture(texturePath);
+        Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE);
     }
 
     @Override
     public void renderModels() {
-        model.renderAll();
+        MODEL.renderAll();
     }
 }

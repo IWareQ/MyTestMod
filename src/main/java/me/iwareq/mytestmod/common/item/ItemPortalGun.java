@@ -1,6 +1,6 @@
 package me.iwareq.mytestmod.common.item;
 
-import me.iwareq.mytestmod.common.entity.entitythrowable.EntityPortalBall;
+import me.iwareq.mytestmod.common.entity.throwable.EntityPortalBall;
 import me.iwareq.mytestmod.common.tab.MyTestTab;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
@@ -14,8 +14,8 @@ public class ItemPortalGun extends Item {
 
     private int currentCharge;
 
-    private boolean canReloading;
-    private boolean cooldown;
+    private boolean shouldReloading;
+    private boolean canCoolDown;
 
     public ItemPortalGun() {
         this.setCreativeTab(MyTestTab.INSTANCE);
@@ -25,7 +25,7 @@ public class ItemPortalGun extends Item {
 
     @Override
     public ItemStack onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer player) {
-        player.setItemInUse(itemStackIn, getMaxItemUseDuration(itemStackIn));
+        player.setItemInUse(itemStackIn, this.getMaxItemUseDuration(itemStackIn));
         return itemStackIn;
     }
 
@@ -36,37 +36,39 @@ public class ItemPortalGun extends Item {
 
     @Override
     public void onUsingTick(ItemStack itemStack, EntityPlayer player, int count) {
-        if (count == 1 && canReloading) reload(player);
-        if (!canReloading) shot(player);
+        if (count == 1 && this.shouldReloading) this.reload(player);
+        if (!this.shouldReloading) this.shot(player);
     }
 
     @Override
     public EnumAction getItemUseAction(ItemStack stack) {
-        return canReloading ? EnumAction.bow : EnumAction.none;
+        return this.shouldReloading ? EnumAction.bow : EnumAction.none;
     }
 
     @Override
     public void onPlayerStoppedUsing(ItemStack itemStack, World world, EntityPlayer player, int count) {
-        if (cooldown) cooldown = false;
+        if (this.canCoolDown) this.canCoolDown = false;
     }
 
     private void shot(EntityPlayer player) {
         World entityWorld = player.getEntityWorld();
         if (entityWorld.isRemote) return;
+        if (this.canCoolDown) return;
 
-        if (cooldown) return;
-        if (currentCharge <= 0) {
-            canReloading = true;
+        if (this.currentCharge <= 0) {
+            this.shouldReloading = true;
             return;
         }
-        cooldown = true;
 
-        currentCharge--;
+        this.canCoolDown = true;
+
+        this.currentCharge--;
         entityWorld.spawnEntityInWorld(new EntityPortalBall(entityWorld, player));
     }
 
     private void reload(EntityPlayer player) {
-        if (player.getEntityWorld().isRemote || !canReloading) return;
+        if (player.getEntityWorld().isRemote || !this.shouldReloading) return;
+
         for (int i = 0; i < player.inventory.mainInventory.length; i++) {
             ItemStack stackInSlot = player.inventory.getStackInSlot(i);
             if (stackInSlot == null) continue;
@@ -74,8 +76,8 @@ public class ItemPortalGun extends Item {
 
             player.inventory.consumeInventoryItem(ItemRegistry.BOTTLE_PORTAL_LIQUID);
 
-            currentCharge = MAX_CHARGE;
-            canReloading = false;
+            this.currentCharge = MAX_CHARGE;
+            this.shouldReloading = false;
             break;
         }
     }

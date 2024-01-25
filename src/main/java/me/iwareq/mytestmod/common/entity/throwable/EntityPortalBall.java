@@ -1,6 +1,7 @@
-package me.iwareq.mytestmod.common.entity.entitythrowable;
+package me.iwareq.mytestmod.common.entity.throwable;
 
-import me.iwareq.mytestmod.common.entity.entityhanging.EntityPortal;
+import me.iwareq.mytestmod.annotation.RequiredForWork;
+import me.iwareq.mytestmod.common.entity.hanging.EntityPortal;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.MovingObjectPosition;
@@ -8,8 +9,9 @@ import net.minecraft.world.World;
 
 public class EntityPortalBall extends EntityThrowable {
 
-    public EntityPortalBall(World world) {
-        super(world);
+    @RequiredForWork
+    public EntityPortalBall(World p_i1776_1_) {
+        super(p_i1776_1_);
     }
 
     public EntityPortalBall(World world, EntityLivingBase entityLivingBase) {
@@ -18,9 +20,9 @@ public class EntityPortalBall extends EntityThrowable {
 
     @Override
     protected void onImpact(MovingObjectPosition position) {
-        if(!worldObj.isRemote){
+        if (!worldObj.isRemote)
             worldObj.spawnEntityInWorld(new EntityPortal(this.worldObj, (int) posX, (int) posY, (int) posZ, position.sideHit));
-        }
+
         this.setDead();
     }
 }

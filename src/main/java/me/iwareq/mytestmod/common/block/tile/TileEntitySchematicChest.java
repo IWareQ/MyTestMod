@@ -84,18 +84,14 @@ public class TileEntitySchematicChest extends TileEntity implements IInventory {
     @Override
     public boolean isUseableByPlayer(EntityPlayer player) {
         return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) == this
-                && player.getDistanceSq((double) xCoord + 0.5D, (double) yCoord + 0.5D, (double) zCoord + 0.5D) <= 64D;
+                && player.getDistanceSq(xCoord + 0.5D, yCoord + 0.5D, zCoord + 0.5D) <= 64D;
     }
 
     @Override
-    public void openInventory() {
-        // NO-OP
-    }
+    public void openInventory() {}
 
     @Override
-    public void closeInventory() {
-        // NO-OP
-    }
+    public void closeInventory() {}
 
     @Override
     public boolean isItemValidForSlot(int slot, ItemStack stack) {

@@ -27,13 +27,9 @@ public class CommonProxy implements IGuiHandler {
         NetworkRegistry.INSTANCE.registerGuiHandler(MyTestMod.instance, this);
     }
 
-    public void init(FMLInitializationEvent event) {
-        // NO-OP
-    }
+    public void init(FMLInitializationEvent event) {}
 
-    public void postInit(FMLPostInitializationEvent event) {
-        // NO-OP
-    }
+    public void postInit(FMLPostInitializationEvent event) {}
 
     @Override
     public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
@@ -47,6 +43,6 @@ public class CommonProxy implements IGuiHandler {
 
     @Override
     public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-        return null; // NO-OP
+        return null;
     }
 }

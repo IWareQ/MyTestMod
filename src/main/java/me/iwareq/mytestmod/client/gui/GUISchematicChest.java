@@ -8,10 +8,12 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 
+import static me.iwareq.mytestmod.Resources.GUI_SCHEMATIC_CHEST;
+
 @SideOnly(Side.CLIENT)
 public class GUISchematicChest extends GuiContainer {
 
-    private static final ResourceLocation bgTexture = new ResourceLocation("textures/gui/container/dispenser.png");
+    private static final ResourceLocation TEXTURE = new ResourceLocation(GUI_SCHEMATIC_CHEST);
 
     public GUISchematicChest(ContainerSchematicChest container) {
         super(container);
@@ -28,7 +30,7 @@ public class GUISchematicChest extends GuiContainer {
     @Override
     protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
         GL11.glColor4f(1F, 1F, 1F, 1F);
-        this.mc.getTextureManager().bindTexture(bgTexture);
+        this.mc.getTextureManager().bindTexture(TEXTURE);
 
         int left = (this.width - this.xSize) / 2;
         int top = (this.height - this.ySize) / 2;

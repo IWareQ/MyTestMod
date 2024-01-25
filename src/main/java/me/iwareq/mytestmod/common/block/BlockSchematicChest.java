@@ -3,7 +3,6 @@ package me.iwareq.mytestmod.common.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import me.iwareq.mytestmod.MyTestMod;
-import me.iwareq.mytestmod.Tags;
 import me.iwareq.mytestmod.common.CommonProxy;
 import me.iwareq.mytestmod.common.block.tile.TileEntitySchematicChest;
 import me.iwareq.mytestmod.common.tab.MyTestTab;
@@ -14,6 +13,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import static me.iwareq.mytestmod.MyTestMod.MOD_ID;
 
 public class BlockSchematicChest extends BlockContainer {
 
@@ -31,7 +32,6 @@ public class BlockSchematicChest extends BlockContainer {
         return new TileEntitySchematicChest();
     }
 
-
     @Override
     public boolean isOpaqueCube() {
         return false;
@@ -45,7 +45,7 @@ public class BlockSchematicChest extends BlockContainer {
     @SideOnly(Side.CLIENT)
     @Override
     public void registerBlockIcons(IIconRegister register) {
-        this.icon = register.registerIcon(Tags.MODID + ":schematic_chest");
+        this.icon = register.registerIcon(MOD_ID + ":schematic_chest");
     }
 
     @SideOnly(Side.CLIENT)

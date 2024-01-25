@@ -1,5 +1,6 @@
-package me.iwareq.mytestmod.common.entity.entityhanging;
+package me.iwareq.mytestmod.common.entity.hanging;
 
+import me.iwareq.mytestmod.annotation.RequiredForWork;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.player.EntityPlayer;
@@ -7,6 +8,8 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 
 public class EntityPortal extends EntityHanging {
+
+    @RequiredForWork
     public EntityPortal(World p_i1588_1_) {
         super(p_i1588_1_);
     }
@@ -27,12 +30,12 @@ public class EntityPortal extends EntityHanging {
     }
 
     @Override
-    public void onBroken(Entity p_110128_1_) {
-    }
+    public void onBroken(Entity p_110128_1_) {}
 
     @Override
     public void onCollideWithPlayer(EntityPlayer entityIn) {
-        if(entityIn.getEntityWorld().isRemote) return;
+        if (entityIn.getEntityWorld().isRemote) return;
+        entityIn.timeUntilPortal = 20 * 5;
         entityIn.travelToDimension(-1);
     }
 
